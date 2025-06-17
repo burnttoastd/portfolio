@@ -1,0 +1,263 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background: black;
+    color: #00ff88;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden;
+}
+
+canvas#matrix-canvas {
+    position: fixed;
+	top: 0;
+	background: black url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' %3E%3Ctext x='50%25' y='50%25' fill='%2300ff88' opacity='0.05' font-family='Courier New, Courier, monospace' font-size='24' text-anchor='middle' dominant-baseline='middle'%3E10101%3C/text%3E%3C/svg%3E") repeat;
+	background-size: 150px 150px;
+	filter: brightness(0.8);
+	animation: background-scroll 10s linear infinite;
+}
+
+/* Add animation for background scrolling */
+@keyframes background-scroll {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0 100%;
+	}
+}
+
+canvas#matrix-canvas {
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+}
+
+.overlay {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #00ff88;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.keyboard-nav {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.key-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.key-btn {
+    padding: 1rem;
+    background-color: transparent;
+    color: #00ff88;
+    border: 1px solid #00ff88;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.key-btn:hover {
+    background-color: #00ff88;
+    color: black;
+}
+
+section {
+    margin: 3rem 0;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    background: black;
+    border: 1px solid #00ff88;
+    color: #00ff88;
+}
+
+form button {
+    padding: 0.8rem 2rem;
+    background: #00ff88;
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* Matrix-style animation for the canvas */
+canvas#matrix-canvas {
+	background: black;
+	animation: matrix-fall 1s infinite linear;
+}
+
+/* Add a glowing effect to the text */
+body, html {
+	text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88, 0 0 20px #00ff88;
+}
+
+/* Enhance the header */
+header {
+	padding: 1rem;
+	border-bottom: 2px solid #00ff88;
+	box-shadow: 0 4px 6px rgba(0, 255, 136, 0.2);
+}
+
+/* Add hover effect to profile picture */
+.profile-pic:hover {
+	box-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88;
+	transform: scale(1.1);
+	transition: all 0.3s ease-in-out;
+}
+
+/* Style for keyboard navigation buttons */
+.key-btn {
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.key-btn:active {
+	transform: scale(0.95);
+	box-shadow: 0 0 5px rgba(0, 255, 136, 0.8);
+}
+
+/* Add a glowing border to form inputs */
+form input:focus, form textarea:focus {
+	outline: none;
+	border-color: #00ff88;
+	box-shadow: 0 0 10px #00ff88;
+}
+
+/* Style for form button hover */
+form button:hover {
+	background: black;
+	color: #00ff88;
+	border: 1px solid #00ff88;
+	box-shadow: 0 0 10px #00ff88;
+}
+
+/* Footer styling */
+footer {
+	text-align: center;
+	padding: 1rem;
+	border-top: 2px solid #00ff88;
+	margin-top: 2rem;
+	font-size: 0.9rem;
+	color: #00ff88;
+	font-size: 1.1rem;
+	text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+	font-size: 1.5rem;
+}
+
+/* Add a subtle animation to the footer */
+footer:hover {
+	text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+}
+
+/* Add a glowing effect to sections */
+section {
+	padding: 2rem;
+	border: 1px solid #00ff88;
+	border-radius: 10px;
+	box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+	background: rgba(0, 0, 0, 0.8);
+}
+
+/* Style for links */
+a {
+	color: #00ff88;
+	text-decoration: none;
+	transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+	color: black;
+	background-color: #00ff88;
+	padding: 0.2rem 0.5rem;
+	border-radius: 5px;
+}
+
+/* Add a glowing effect to h1 */
+h1 {
+	text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+}
+
+/* Add a smooth scroll effect */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Add a glowing border to the canvas */
+canvas#matrix-canvas {
+	border: 2px solid #00ff88;
+	box-shadow: 0 0 20px #00ff88;
+}
+
+/* Add a subtle animation to the matrix effect */
+@keyframes matrix-fall {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0 100%;
+	}
+}
+
+/* Add responsive design */
+@media (max-width: 768px) {
+	h1 {
+		font-size: 2rem;
+	}
+
+	.profile-pic {
+		width: 100px;
+		height: 100px;
+	}
+
+	.key-btn {
+		font-size: 1rem;
+		padding: 0.8rem;
+	}
+
+	form input, form textarea {
+		padding: 0.6rem;
+	}
+
+	form button {
+		padding: 0.6rem 1.5rem;
+	}
+}
+
+/* Add a glowing effect to the keyboard navigation */
+.keyboard-nav {
+	border: 1px solid #00ff88;
+	padding: 1rem;
+	border-radius: 10px;
+	box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+/* Add hover effect to sections */
+section:hover {
+	transform: scale(1.02);
+	transition: all 0.3s ease-in-out;
+}
