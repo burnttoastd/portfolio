@@ -9,45 +9,42 @@ const letters = 'アァイゥエオカキクケコサシスセソABCDEFGHIJKLMNO
 const fontSize = 16;
 const columns = canvas.width / fontSize;
 const drops = Array.from({ length: columns }).fill(1);
+
+// Define section mappings for keyboard navigation
+const sections = {
+    '1': 'whoiam',
+    '2': 'achievements',
+    '3': 'why', 
+    '4': 'projects',
+    '5': 'goals',
+    '6': 'contact',
+    '7': 'achievement-gallery'
+};
+
 document.addEventListener('keydown', (e) => {
-    const pageMappings = {
-        '1': 'about-me.html',
-        '2': 'who-i-am.html',
-        '3': 'why.html',
-        '4': 'goals.html',
-        '5': 'contact.html'
-    };
-
-    if (pageMappings[e.key]) {
-        window.open(pageMappings[e.key], '_blank');
-    } else if (sections[e.key]) {
+    // Navigate to sections using number keys
+    if (sections[e.key]) {
         document.getElementById(sections[e.key]).scrollIntoView({ behavior: 'smooth' });
-    } else {
-        const additionalMappings = {
-            'a': 'achievements.html',
-            's': 'skills.html',
-            'd': 'projects.html',
-            'f': 'feedback.html',
-            'g': 'gallery.html'
-        };
-
-        if (additionalMappings[e.key]) {
-            window.open(additionalMappings[e.key], '_blank');
-        }
     }
 });
 
-    // Enhanced Smooth Animations for Scrolling
-    document.querySelectorAll('.scroll-link').forEach(link => {
+// Smooth scrolling for footer links only
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scrolling for footer links
+    document.querySelectorAll('.footer-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+            const targetSection = document.getElementById(targetId);
+            console.log(`Clicking footer link for section: ${targetId}`, targetSection); // Debug log
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                console.error(`Section with id "${targetId}" not found!`);
             }
         });
     });
+});
 
     // Improved Fade-In Animation for Sections
     const fadeInObserver = new IntersectionObserver((entries) => {
@@ -91,6 +88,64 @@ document.addEventListener('keydown', (e) => {
             slide.style.transition = 'opacity 0.5s ease-in-out';
         });
     }
+
+    // Achievement Gallery Carousel Functionality
+let currentSlideIndex = 0;
+const carouselSlides = document.querySelectorAll('.carousel-slide');
+const carouselDots = document.querySelectorAll('.dot');
+
+// Function to show a specific slide
+function showSlide(index) {
+    // Remove active class from all slides and dots
+    carouselSlides.forEach(slide => slide.classList.remove('active'));
+    carouselDots.forEach(dot => dot.classList.remove('active'));
+    
+    // Add active class to current slide and dot
+    if (carouselSlides[index]) {
+        carouselSlides[index].classList.add('active');
+    }
+    if (carouselDots[index]) {
+        carouselDots[index].classList.add('active');
+    }
+}
+
+// Function to change slide (next/previous)
+function changeSlide(direction) {
+    currentSlideIndex += direction;
+    
+    // Loop around if we go past the last slide
+    if (currentSlideIndex >= carouselSlides.length) {
+        currentSlideIndex = 0;
+    }
+    
+    // Loop around if we go before the first slide
+    if (currentSlideIndex < 0) {
+        currentSlideIndex = carouselSlides.length - 1;
+    }
+    
+    showSlide(currentSlideIndex);
+}
+
+// Function to go to a specific slide
+function currentSlide(index) {
+    currentSlideIndex = index - 1; // Convert to 0-based index
+    showSlide(currentSlideIndex);
+}
+
+// Auto-advance carousel every 5 seconds
+function startAutoCarousel() {
+    setInterval(() => {
+        changeSlide(1);
+    }, 5000); // 5 seconds
+}
+
+// Initialize carousel when page loads
+document.addEventListener('DOMContentLoaded', () => {    // Start the auto-carousel if slides exist
+    if (carouselSlides.length > 0) {
+        showSlide(0); // Show first slide
+        startAutoCarousel(); // Start auto-advance
+    }
+});
 
     // Smooth Parallax Effect
     window.addEventListener('scroll', () => {
@@ -266,15 +321,7 @@ function typeLoop() {
 
 typeLoop();
 
-// Keyboard Navigation
-const sections = {
-    '1': 'achievements',
-    '2': 'whoiam',
-    '3': 'why',
-    '4': 'goals',
-    '5': 'contact'
-};
-
+// Keyboard Navigation (using existing sections mapping from top of file)
 document.addEventListener('keydown', (e) => {
     if (sections[e.key]) {
         document.getElementById(sections[e.key]).scrollIntoView({ behavior: 'smooth' });
